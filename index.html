@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<title>Zajel Mail — self-hosted mail, calendar and contacts</title>
+	<meta name="description" content="Zajel Mail is a self-hosted workspace for mail, calendar and contacts on your own Stalwart server, with Zajel, your agent, which proposes and never acts, and Jev, an Inbox that sorts itself.">
+	<meta name="theme-color" content="#080b11">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+	<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Zajel Mail — self-hosted mail, calendar and contacts">
+	<meta property="og:description" content="Webmail that sorts itself, sends on time and answers to you. Open source, built on JMAP and CalDAV.">
+	<meta property="og:image" content="https://odaiameera.github.io/zajel-mail-website/assets/screenshots/inbox.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+	<link rel="stylesheet" href="assets/site.css">
+	<script>
+		try {
+			const t = localStorage.getItem('theme');
+			if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+		} catch {}
+	</script>
+</head>
+<body>
+	<header class="site-header">
+		<div class="wrap">
+			<a class="logo" href="#top"><img src="assets/icon-192.png" alt="" width="30" height="30">zajel.</a>
+			<nav class="nav" aria-label="Sections">
+				<a href="#mail">Mail</a>
+				<a href="#agent">Zajel</a>
+				<a href="#jev">Jev</a>
+				<a href="#calendar">Calendar</a>
+				<a href="#security">Security</a>
+				<a href="#install">Install</a>
+			</nav>
+			<div class="header-actions">
+				<button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><span class="ti-sun"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="4" /> <path d="M12 2v2" /> <path d="M12 20v2" /> <path d="m4.93 4.93 1.41 1.41" /> <path d="m17.66 17.66 1.41 1.41" /> <path d="M2 12h2" /> <path d="M20 12h2" /> <path d="m6.34 17.66-1.41 1.41" /> <path d="m19.07 4.93-1.41 1.41" /> </svg></span><span class="ti-moon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /> </svg></span></button>
+				<a class="btn btn-ghost btn-sm" href="https://github.com/odaiameera/zajel-mail"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>GitHub</a>
+				<button class="icon-btn menu-btn" type="button" data-menu aria-expanded="false" aria-label="Menu"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M4 5h16" /> <path d="M4 12h16" /> <path d="M4 19h16" /> </svg></button>
+			</div>
+		</div>
+	</header>
+
+	<main id="top">
+		<!-- ============================================================ hero -->
+		<section class="hero">
+			<div class="wrap">
+				<a class="release-pill reveal" href="https://github.com/odaiameera/zajel-mail/releases/tag/v0.5.0"><b>v0.5.0</b> Jev, Zajel on GPT-5.6, and Send later</a>
+				<h1 class="reveal">Webmail that <em>sorts itself</em>, sends on time and answers to you.</h1>
+				<p class="lede reveal">Zajel Mail brings your mail, calendar and contacts into one fast workspace on your own Stalwart server. Zajel, your agent, reads your day and proposes what to do. Jev sorts your Inbox and runs the rules you write in plain English. Nothing leaves your control.</p>
+				<div class="hero-actions reveal">
+					<a class="btn btn-primary" href="#install"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <rect width="20" height="8" x="2" y="2" rx="2" ry="2" /> <rect width="20" height="8" x="2" y="14" rx="2" ry="2" /> <line x1="6" x2="6.01" y1="6" y2="6" /> <line x1="6" x2="6.01" y1="18" y2="18" /> </svg>Install on your server</a>
+					<a class="btn btn-ghost" href="https://github.com/odaiameera/zajel-mail"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>Star on GitHub</a>
+				</div>
+				<div class="hero-shot frame reveal">
+					<div class="frame-bar"><i></i><i></i><i></i><span>mail.yourdomain.com/inbox</span></div>
+					<img class="theme-shot" data-shot="dark" src="assets/screenshots/inbox.png" width="2880" height="1800" alt="The Zajel Mail inbox in the dark theme, with Inbox tabs, folders and labels with icons, and a message open in the reading pane">
+					<img class="theme-shot" data-shot="light" src="assets/screenshots/inbox-light.png" width="2880" height="1800" alt="The Zajel Mail inbox in the light theme, with a contract email open in the reading pane">
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ standards -->
+		<section class="standards" aria-label="Built on open standards">
+			<div class="wrap">
+				<p>Built on open standards</p>
+				<ul>
+					<li>JMAP</li>
+					<li>CalDAV</li>
+					<li>JSContact</li>
+					<li>Sieve</li>
+					<li>iCalendar</li>
+					<li>WebAuthn</li>
+					<li>Stalwart</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- ============================================================ mail -->
+		<section class="band" id="mail">
+			<div class="wrap band-grid">
+				<div class="band-copy">
+					<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" /> <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /> </svg>Mail</div>
+					<h2>An Inbox that keeps what matters on top.</h2>
+					<p class="intro">Mail splits into Important, Updates, Newsletters and Promotions, each with its own unread count. Sort by dragging, with Move to tab, or let Jev do it. Messages never leave your Inbox; a tab only changes where you see them.</p>
+					<ul class="ticks">
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span><strong>Search everything</strong> from any page with <kbd>Ctrl</kbd> <kbd>K</kbd> or <kbd>/</kbd>, across every folder, with filters you can clear in one click.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" /> <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /> </svg><span><strong>Sign-in codes, found for you.</strong> The code sits above the message with a Copy button that can send the email to Trash too.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /> <circle cx="9" cy="9" r="2" /> <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /> </svg><span><strong>Private by default.</strong> Remote images load through your server, and messages render in a sandbox with scripts off.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="13" r="8" /> <path d="M12 9v4l2 2" /> <path d="M5 3 2 6" /> <path d="m22 6-3-3" /> <path d="M6.38 18.7 4 21" /> <path d="M17.64 18.67 20 21" /> </svg><span><strong>Remind Me Later</strong> parks a message until later today, tomorrow, the weekend or next week.</span></li>
+					</ul>
+					<div class="code-chip" aria-label="A detected verification code: 482913"><div><small>VERIFICATION CODE</small><strong>482913</strong></div></div>
+				</div>
+				<div data-tabs>
+					<div class="shot-tabs" role="tablist" aria-label="Mail screenshots">
+						<button type="button" role="tab" id="t-code" aria-controls="p-code" aria-selected="true">Sign-in codes</button>
+						<button type="button" role="tab" id="t-search" aria-controls="p-search" aria-selected="false" tabindex="-1">Search</button>
+					</div>
+					<div class="frame shot-panel" role="tabpanel" id="p-code" aria-labelledby="t-code">
+						<img src="assets/screenshots/signin-code.png" width="2880" height="1800" loading="lazy" alt="A sign-in code email in the Updates tab, with the detected code and a Copy code button">
+					</div>
+					<div class="frame shot-panel" role="tabpanel" id="p-search" aria-labelledby="t-search" hidden>
+						<img src="assets/screenshots/search.png" width="2880" height="1800" loading="lazy" alt="Search results for Northpeak, with the matching contract email open">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ composer -->
+		<section class="band flip" id="composer">
+			<div class="wrap band-grid">
+				<div class="band-copy">
+					<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /> <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" /> </svg>The composer</div>
+					<h2>Send it later. Take it back.</h2>
+					<p class="intro">The composer opens in the corner, above the message you're answering, with everything you need in its toolbar and nothing you don't.</p>
+					<ul class="ticks">
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /> </svg><span><strong>Send later</strong>: tomorrow morning, tomorrow afternoon, Monday, or any date and time. Your server sends it, so it goes out even with every tab closed.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M9 14 4 9l5-5" /> <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11" /> </svg><span><strong>Undo send</strong> gives you 5 to 30 seconds to change your mind.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 17-2.156-1.868A.5.5 0 0 0 18 15.5v.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1c0-2.545-3.991-3.97-8.5-4a1 1 0 0 0 0 5c4.153 0 4.745-11.295 5.708-13.5a2.5 2.5 0 1 1 3.31 3.284" /> <path d="M3 21h18" /> </svg><span><strong>Rich text, recipient chips, attachments, emoji, importance</strong> and a signature for each identity.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14" /> <path d="M12 5v14" /> </svg><span><strong>One + button</strong> starts a message, an event or a contact from any page.</span></li>
+					</ul>
+				</div>
+				<div class="frame">
+					<img src="assets/screenshots/compose.png" width="2880" height="1800" loading="lazy" alt="The composer replying to Daniel, with the Send later menu open: tomorrow morning, tomorrow afternoon, Monday morning, or pick a date and time">
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ agent -->
+		<section class="band" id="agent">
+			<div class="wrap band-grid">
+				<div class="band-copy">
+					<div class="eyebrow"><span class="agent-mark" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /> </svg></span>Zajel, your agent</div>
+					<h2>It reads your day. You make the calls.</h2>
+					<p class="intro">Zajel searches your whole mailbox and calendar, a step at a time, until it can answer. It summarises, prepares and drafts, and it changes nothing until you confirm.</p>
+					<div class="prompts" aria-label="Things to ask Zajel">
+						<span>Summarize today's mail</span>
+						<span>What's on tomorrow?</span>
+						<span>Summarize this email</span>
+						<span>Did the accountant send the Q3 figures?</span>
+						<span>Create a task</span>
+					</div>
+					<ul class="ticks">
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M16 18h6" /> <path d="M16 2v3" /> <path d="M19 15v6" /> <path d="M21 11.5V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h8.3" /> <path d="M3 9h18" /> <path d="M8 2v3" /> </svg><span><strong>Events and deletions arrive as cards</strong> that name the event and the date, and apply only when you click.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /> <path d="m21.854 2.147-10.94 10.939" /> </svg><span><strong>Tasks go where you work</strong>: Todoist, Linear, Notion, a webhook or an MCP bridge, after you confirm.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 20v2" /> <path d="M12 2v2" /> <path d="M17 20v2" /> <path d="M17 2v2" /> <path d="M2 12h2" /> <path d="M2 17h2" /> <path d="M2 7h2" /> <path d="M20 12h2" /> <path d="M20 17h2" /> <path d="M20 7h2" /> <path d="M7 20v2" /> <path d="M7 2v2" /> <rect x="4" y="4" width="16" height="16" rx="2" /> <rect x="8" y="8" width="8" height="8" rx="1" /> </svg><span><strong>Your choice of model.</strong> OpenAI's GPT-5.6, sent with <code>store: false</code>, or any Ollama model, including one on your own machine.</span></li>
+					</ul>
+					<div class="models"><code>gpt-5.6-terra</code><code>gpt-5.6-luna</code><code>ollama</code></div>
+				</div>
+				<div class="frame">
+					<img src="assets/screenshots/agent.png" width="2880" height="1800" loading="lazy" alt="Zajel summarising today's mail: three things need a reply, then what's good to know and what can wait">
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ jev -->
+		<section class="band flip" id="jev">
+			<div class="wrap band-grid">
+				<div class="band-copy">
+					<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 5h20" /> <path d="M6 12h12" /> <path d="M9 19h6" /> </svg>Jev</div>
+					<h2>Rules you can write in a sentence.</h2>
+					<p class="intro">Jev is TypeSafe's decision model. It judges each new email once and answers with probabilities, so Zajel Mail can sort your Inbox, run plain-English rules and give a second opinion on spam.</p>
+					<div class="strictness">
+						<q>It's an invoice, a receipt or a request for payment</q>
+						<div class="scale" role="img" aria-label="Strictness: Loose 60%, Normal 80% (selected), Strict 95%">
+							<span style="left: 60%"><b>Loose<br>60%</b></span>
+							<span class="on" style="left: 80%"><b>Normal<br>80%</b></span>
+							<span style="left: 95%"><b>Strict<br>95%</b></span>
+						</div>
+					</div>
+					<ul class="ticks">
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" /> <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /> </svg><span><strong>Sorts new mail into tabs</strong>, and shows why. Unsure picks stay in Important, so nothing hides.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 21a8 8 0 0 1 13.292-6" /> <circle cx="10" cy="8" r="5" /> <path d="m16 19 2 2 4-4" /> </svg><span><strong>Learns from you.</strong> It never moves mail you sorted, your moves teach it, and pinned senders skip it entirely.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="M12 8v4" /> <path d="M12 16h.01" /> </svg><span><strong>Spam and phishing checks</strong> beside Stalwart's filter: watch first, then let it act, never on your contacts.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /> <circle cx="12" cy="12" r="3" /> </svg><span><strong>Try it first.</strong> See where your last 200 emails would go before switching it on, account by account.</span></li>
+					</ul>
+				</div>
+				<div data-tabs>
+					<div class="shot-tabs" role="tablist" aria-label="Jev screenshots">
+						<button type="button" role="tab" id="t-rule" aria-controls="p-rule" aria-selected="true">A Jev rule</button>
+						<button type="button" role="tab" id="t-tabs" aria-controls="p-tabs" aria-selected="false" tabindex="-1">Inbox tabs</button>
+					</div>
+					<div class="frame shot-panel" role="tabpanel" id="p-rule" aria-labelledby="t-rule">
+						<img src="assets/screenshots/jev-rule.png" width="2880" height="1800" loading="lazy" alt="A Jev rule that moves invoices and receipts to the Receipts folder, with Normal 80% strictness">
+					</div>
+					<div class="frame shot-panel" role="tabpanel" id="p-tabs" aria-labelledby="t-tabs" hidden>
+						<img src="assets/screenshots/jev-tabs.png" width="1520" height="800" loading="lazy" alt="Settings, Jev: the four Inbox tabs and the switch that turns them on for an account">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ calendar -->
+		<section class="band" id="calendar">
+			<div class="wrap band-grid">
+				<div class="band-copy">
+					<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M8 2v3" /> <path d="M16 2v3" /> <rect x="3" y="3" width="18" height="18" rx="2" /> <path d="M3 9h18" /> <path d="M8 13h.01" /> <path d="M12 13h.01" /> <path d="M16 13h.01" /> <path d="M8 17h.01" /> <path d="M12 17h.01" /> <path d="M16 17h.01" /> </svg>Calendar</div>
+					<h2>Your CalDAV calendars, at a glance.</h2>
+					<p class="intro">Month, week, work week, 3-day and day views over every calendar on your server, each in its own colour. It remembers the view you like.</p>
+					<ul class="ticks">
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /> <path d="m16 19 2 2 4-4" /> </svg><span><strong>Invitations</strong> show as an RSVP card right in the email.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M16 18h6" /> <path d="M16 2v3" /> <path d="M19 15v6" /> <path d="M21 11.5V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h8.3" /> <path d="M3 9h18" /> <path d="M8 2v3" /> </svg><span><strong>Add to calendar</strong> turns "dinner Thursday at 8" into an event.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.268 21a2 2 0 0 0 3.464 0" /> <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" /> </svg><span><strong>Reminders and notifications</strong> for what's coming up, and for anything new or changed.</span></li>
+					</ul>
+					<div class="keys" aria-label="Calendar keyboard shortcuts">
+						<div><kbd>T</kbd>Today</div>
+						<div><kbd>M</kbd>Month</div>
+						<div><kbd>W</kbd>Week</div>
+						<div><kbd>F</kbd>Work week</div>
+						<div><kbd>3</kbd>3-day</div>
+						<div><kbd>D</kbd>Day</div>
+						<div><kbd>C</kbd>New event</div>
+						<div><kbd>←</kbd><kbd>→</kbd>Move</div>
+					</div>
+				</div>
+				<div data-tabs>
+					<div class="shot-tabs" role="tablist" aria-label="Calendar screenshots">
+						<button type="button" role="tab" id="t-week" aria-controls="p-week" aria-selected="true">Week</button>
+						<button type="button" role="tab" id="t-month" aria-controls="p-month" aria-selected="false" tabindex="-1">Month, light</button>
+					</div>
+					<div class="frame shot-panel" role="tabpanel" id="p-week" aria-labelledby="t-week">
+						<img src="assets/screenshots/calendar.png" width="2880" height="1800" loading="lazy" alt="The week view with Work, Personal and Family calendars, and the Q4 roadmap review's details open">
+					</div>
+					<div class="frame shot-panel" role="tabpanel" id="p-month" aria-labelledby="t-month" hidden>
+						<img src="assets/screenshots/calendar-month-light.png" width="2880" height="1800" loading="lazy" alt="The month view in the light theme">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ contacts -->
+		<section class="band flip" id="contacts">
+			<div class="wrap band-grid">
+				<div class="band-copy">
+					<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M16 2v2" /> <path d="M17.915 21a6 6 0 10-12 0" /> <path d="M8 2v2" /> <circle cx="12" cy="11" r="4" /> <rect x="3" y="3" width="18" height="18" rx="2" /> </svg>Contacts</div>
+					<h2>One address book, everywhere you are.</h2>
+					<p class="intro">Contacts live in Stalwart, so they stay in sync with your phone and any CardDAV app. They load with the page, so they're there the moment you click.</p>
+					<ul class="ticks">
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M18 21a8 8 0 0 0-16 0" /> <circle cx="10" cy="8" r="5" /> <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" /> </svg><span><strong>Lists</strong> for teams, family or the offsite crew, managed right from each card.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="M12 12v6" /> <path d="m15 15-3-3-3 3" /> </svg><span><strong>Import from Apple and Google</strong> with vCard or CSV, and a preview of every row before anything is written.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /> <rect x="2" y="4" width="20" height="16" rx="2" /> </svg><span><strong>Compose email</strong> from any contact in one click.</span></li>
+					</ul>
+				</div>
+				<div class="frame">
+					<img src="assets/screenshots/contacts.png" width="2880" height="1800" loading="lazy" alt="Contacts: the list, contact lists in the sidebar, and Priya's card with email, phone, notes and lists">
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ make it yours -->
+		<section class="band" id="yours">
+			<div class="wrap band-grid">
+				<div class="band-copy">
+					<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" /> <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" /> <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" /> <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" /> <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" /> </svg>Make it yours</div>
+					<h2>Every folder gets an icon. Every theme gets care.</h2>
+					<p class="intro">Pick an icon for any folder or label from the full Lucide set of about 1,900, searchable by name and keyword, in the colour you choose.</p>
+					<ul class="ticks">
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="4" /> <path d="M12 2v2" /> <path d="M12 20v2" /> <path d="m4.93 4.93 1.41 1.41" /> <path d="m17.66 17.66 1.41 1.41" /> <path d="M2 12h2" /> <path d="M20 12h2" /> <path d="m6.34 17.66-1.41 1.41" /> <path d="m19.07 4.93-1.41 1.41" /> </svg><span><strong>Dark and light themes</strong>, comfortable or compact density, and a reading pane you can switch off.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" /> <path d="M8 10v4" /> <path d="M12 10v2" /> <path d="M16 10v6" /> </svg><span><strong>Folders, labels, accounts and calendars</strong> each carry their own colour.</span></li>
+						<li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span><strong>Several mail accounts</strong> under one sign-in, each with its own colour and photo.</span></li>
+					</ul>
+				</div>
+				<div class="pair">
+					<div class="frame"><img src="assets/screenshots/folder-icons.png" width="920" height="1624" loading="lazy" alt="Create folder: name, location, a colour palette and an icon picker"></div>
+					<div class="frame"><img src="assets/screenshots/plus-menu.png" width="660" height="430" loading="lazy" alt="The + menu: Message, Event and Contact, beside the Zajel button"></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ phone -->
+		<section class="band center" id="phone">
+			<div class="wrap">
+				<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <rect width="14" height="20" x="5" y="2" rx="2" ry="2" /> <path d="M12 18h.01" /> </svg>On your phone</div>
+				<h2>The whole workspace fits in your pocket.</h2>
+				<p class="intro">A bottom tab bar, folders in a drawer, full-screen reading, and the + and Zajel buttons right under your thumb. Install it from the browser as an app.</p>
+				<div class="phones">
+					<div class="phone"><img src="assets/screenshots/mobile-inbox.png" width="780" height="1688" loading="lazy" alt="The inbox on a phone, with Inbox tabs and a bottom tab bar"></div>
+					<div class="phone"><img src="assets/screenshots/mobile-reading.png" width="780" height="1688" loading="lazy" alt="Reading Daniel's dinner invitation on a phone"></div>
+					<div class="phone"><img src="assets/screenshots/mobile-calendar.png" width="780" height="1688" loading="lazy" alt="Today's schedule in the day view on a phone"></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ everything else -->
+		<section class="band center" id="more">
+			<div class="wrap">
+				<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /> </svg>And the rest</div>
+				<h2>The details that make mail feel effortless.</h2>
+				<div class="grid-cards">
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <rect width="8" height="8" x="3" y="3" rx="2" /> <path d="M7 11v4a2 2 0 0 0 2 2h4" /> <rect width="8" height="8" x="13" y="13" rx="2" /> </svg><h3>Rules that run on the server</h3><p>About a minute after mail lands, with every tab closed. See how many existing emails match before you save.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 18v-2a4 4 0 0 0-4-4H4" /> <path d="m9 17-5-5 5-5" /> </svg><h3>Auto-reply</h3><p>A vacation message, deployed to your mail server as Sieve.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M10 11v6" /> <path d="M14 11v6" /> <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /> <path d="M3 6h18" /> <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /> </svg><h3>Trash that empties itself</h3><p>After 7 or 30 days, if you want it to.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 12.532V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8.792" /> <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /> <path d="m16.5 16.5 5 5" /> <path d="m21.5 16.5-5 5" /> </svg><h3>One-click unsubscribe</h3><p>For every mailing list that supports it.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 21a8 8 0 0 1 13.292-6" /> <circle cx="10" cy="8" r="5" /> <path d="m16 19 2 2 4-4" /> </svg><h3>Sender avatars and trust</h3><p>BIMI, favicons and Gravatar, cached once for every device. Trusted senders come from your address book.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /> </svg><h3>Spam score in view</h3><p>Stalwart's score and the authentication results beside every message, with reasons when one is flagged.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.268 21a2 2 0 0 0 3.464 0" /> <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" /> </svg><h3>Notifications</h3><p>New mail in the folders you choose, plus event reminders and changes.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 17-2.156-1.868A.5.5 0 0 0 18 15.5v.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1c0-2.545-3.991-3.97-8.5-4a1 1 0 0 0 0 5c4.153 0 4.745-11.295 5.708-13.5a2.5 2.5 0 1 1 3.31 3.284" /> <path d="M3 21h18" /> </svg><h3>Signatures</h3><p>As many as you like, with a default for each identity.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M10 8h.01" /> <path d="M12 12h.01" /> <path d="M14 8h.01" /> <path d="M16 12h.01" /> <path d="M18 8h.01" /> <path d="M6 8h.01" /> <path d="M7 16h10" /> <path d="M8 12h.01" /> <rect width="20" height="16" x="2" y="4" rx="2" /> </svg><h3>Keyboard first</h3><p>Search from anywhere, and drive the calendar without touching the mouse.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /> <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" /> <rect x="6" y="14" width="12" height="8" rx="1" /> </svg><h3>Print</h3><p>A clean copy of any message.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 20h.01" /> <path d="M8.5 16.429a5 5 0 0 1 7 0" /> <path d="M5 12.859a10 10 0 0 1 5.17-2.69" /> <path d="M19 12.859a10 10 0 0 0-2.007-1.523" /> <path d="M2 8.82a15 15 0 0 1 4.177-2.643" /> <path d="M22 8.82a15 15 0 0 0-11.288-3.764" /> <path d="m2 2 20 20" /> </svg><h3>Installable</h3><p>A Progressive Web App with its own icon and an offline page.</p></div>
+					<div class="card"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <ellipse cx="12" cy="5" rx="9" ry="3" /> <path d="M3 5V19A9 3 0 0 0 21 19V5" /> <path d="M3 12A9 3 0 0 0 21 12" /> </svg><h3>Settings that follow you</h3><p>Preferences live on your server, keyed to your login, with export and import.</p></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ security -->
+		<section class="band security" id="security">
+			<div class="wrap">
+				<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /> </svg>Security and privacy</div>
+				<h2>It holds the keys to your mail, so security comes first.</h2>
+				<p class="intro">Your mail, contacts and calendars stay on your Stalwart server. Zajel Mail keeps its own secrets on the server too, and never in the browser.</p>
+				<div class="sec-grid">
+					<div><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="16" r="1" /> <rect x="3" y="10" width="18" height="12" rx="2" /> <path d="M7 10V7a5 5 0 0 1 10 0v3" /> </svg><div><h3>A hardened master login</h3><p>Hashed with scrypt (N=2<sup>17</sup>), separate from your mail passwords, and locked for 15 minutes after 10 failed tries.</p></div></div>
+					<div><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4" /> <path d="M14 13.12c0 2.38 0 6.38-1 8.88" /> <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02" /> <path d="M2 12a10 10 0 0 1 18-6" /> <path d="M2 16h.01" /> <path d="M21.8 16c.2-2 .131-5.354 0-6" /> <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2" /> <path d="M8.65 22c.21-.66.45-1.32.57-2" /> <path d="M9 6.8a6 6 0 0 1 9 5.2v2" /> </svg><div><h3>Passkeys</h3><p>Sign in with WebAuthn, and see and revoke your active sessions.</p></div></div>
+					<div><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" /> <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /> </svg><div><h3>Encrypted mail credentials</h3><p>Linked account passwords are stored with AES-256-GCM, under a key derived from your own secret.</p></div></div>
+					<div><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /> </svg><div><h3>Sandboxed messages</h3><p>Email renders in an isolated frame with scripts disabled, and remote images come through your server.</p></div></div>
+					<div><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <rect width="20" height="8" x="2" y="2" rx="2" ry="2" /> <rect width="20" height="8" x="2" y="14" rx="2" ry="2" /> <line x1="6" x2="6.01" y1="6" y2="6" /> <line x1="6" x2="6.01" y1="18" y2="18" /> </svg><div><h3>Secrets stay server-side</h3><p>AI, Jev and task-app tokens are read only by server code. Session cookies are HttpOnly, Secure and SameSite=Strict.</p></div></div>
+					<div><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /> </svg><div><h3>An assistant that asks first</h3><p>Zajel proposes replies, events, deletions and tasks. Nothing happens until you click.</p></div></div>
+				</div>
+				<div class="data-flow">
+					<h3>Where your data goes</h3>
+					<ul>
+						<li><strong>AI:</strong> only to the service you configure, OpenAI with <code>store: false</code> or your own Ollama endpoint.</li>
+						<li><strong>Jev:</strong> only for accounts you switch on. Each email is sent once, trimmed to the first 2,000 characters, and the app keeps the probabilities, never the text.</li>
+						<li><strong>Tasks and calendar changes:</strong> only after you confirm them.</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ install -->
+		<section class="band" id="install">
+			<div class="wrap">
+				<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 19h8" /> <path d="m4 17 6-6-6-6" /> </svg>Install</div>
+				<h2>Up and running in a few minutes.</h2>
+				<p class="intro">You need a JMAP mail server. Zajel Mail is developed and tested against Stalwart, which also serves your calendars and contacts.</p>
+				<div class="requirements">
+					<span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 6 9 17l-5-5" /> </svg>Stalwart or another JMAP server</span>
+					<span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 6 9 17l-5-5" /> </svg>Docker, or Node.js 22+</span>
+					<span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 6 9 17l-5-5" /> </svg>A TLS reverse proxy for remote access</span>
+				</div>
+				<div class="install-grid">
+					<div class="tabs" data-tabs>
+						<div class="tab-list" role="tablist" aria-label="Install method">
+							<button type="button" role="tab" id="t-docker" aria-controls="p-docker" aria-selected="true">Docker</button>
+							<button type="button" role="tab" id="t-dev" aria-controls="p-dev" aria-selected="false" tabindex="-1">Development</button>
+						</div>
+						<div class="tab-panel" role="tabpanel" id="p-docker" aria-labelledby="t-docker">
+							<ol>
+								<li><p>Get the code and the example configuration.</p>
+<div class="code"><pre>git clone https://github.com/odaiameera/zajel-mail.git
+cd zajel-mail
+cp docker-compose.example.yml docker-compose.yml</pre></div></li>
+								<li><p>Set <code>ORIGIN</code>, <code>JMAP_BASE_URL</code> and a secret in <code>docker-compose.yml</code>.</p>
+<div class="code"><pre>openssl rand -base64 32   <span class="c"># → WEBMAIL_SECRET</span></pre></div></li>
+								<li><p>Start it, then open your URL to create your login and link your first account.</p>
+<div class="code"><pre>docker compose up --build -d</pre></div></li>
+							</ol>
+						</div>
+						<div class="tab-panel" role="tabpanel" id="p-dev" aria-labelledby="t-dev" hidden>
+							<ol>
+								<li><p>Install and copy the environment file.</p>
+<div class="code"><pre>git clone https://github.com/odaiameera/zajel-mail.git
+cd zajel-mail
+npm ci
+cp .env.example .env.local</pre></div></li>
+								<li><p>Set <code>WEBMAIL_SECRET</code> and <code>JMAP_BASE_URL</code> in <code>.env.local</code>, then start the dev server.</p>
+<div class="code"><pre>npm run dev   <span class="c"># → http://localhost:5173</span></pre></div></li>
+							</ol>
+						</div>
+					</div>
+					<div>
+						<div class="addon">
+							<h3><span class="agent-mark" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /> </svg></span>Add Zajel</h3>
+							<p>Set one key to run Zajel on OpenAI, or point it at Ollama.</p>
+<div class="code"><pre>OPENAI_API_KEY=sk-...
+OPENAI_MODEL=gpt-5.6-luna   <span class="c"># optional</span></pre></div>
+						</div>
+						<div class="addon">
+							<h3><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 5h20" /> <path d="M6 12h12" /> <path d="M9 19h6" /> </svg>Add Jev</h3>
+							<p>Add your TypeSafe key, then turn it on per account in Settings → Jev. No key yet? <code>JEV_MOCK=1</code> lets you try it.</p>
+<div class="code"><pre>TYPESAFE_API_KEY=...</pre></div>
+						</div>
+						<p class="requirements"><a href="https://github.com/odaiameera/zajel-mail#installation">The full installation guide is in the README <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a></p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ open source -->
+		<section class="band oss" id="open-source">
+			<div class="wrap">
+				<div class="eyebrow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762" /> </svg>Open source</div>
+				<h2>MIT licensed, built in the open.</h2>
+				<p class="intro center" style="margin-left:auto;margin-right:auto">Bug fixes, features, docs and design polish are all welcome. Start with the contributing guide, and report security issues privately.</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="https://github.com/odaiameera/zajel-mail"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>View the code</a>
+					<a class="btn btn-ghost" href="https://github.com/odaiameera/zajel-mail#contributing"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <circle cx="18" cy="18" r="3" /> <circle cx="6" cy="6" r="3" /> <path d="M13 6h3a2 2 0 0 1 2 2v7" /> <line x1="6" x2="6" y1="9" y2="21" /> </svg>Contribute</a>
+					<a class="btn btn-ghost" href="https://github.com/odaiameera/zajel-mail/releases"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg>Release notes</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<span>Zajel Mail, formerly ameera. · MIT License · Screenshots show fictional people and data.</span>
+			<nav aria-label="Footer">
+				<a href="https://github.com/odaiameera/zajel-mail">GitHub</a>
+				<a href="https://github.com/odaiameera/zajel-mail/releases">Releases</a>
+				<a href="https://github.com/odaiameera/zajel-mail/blob/main/SECURITY.md">Security</a>
+				<a href="https://github.com/odaiameera/zajel-mail/blob/main/LICENSE">License</a>
+			</nav>
+		</div>
+	</footer>
+
+	<dialog class="lightbox" aria-label="Screenshot">
+		<img src="" alt="">
+		<p></p>
+	</dialog>
+
+	<script src="assets/site.js"></script>
+</body>
+</html>
